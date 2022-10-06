@@ -18,14 +18,14 @@ public class Grow : MonoBehaviour
     private void Awake()
     {
         AssignChilds();
-        StartGrow();
+        
     }
     private void AssignChilds()
     {
         Grow childTemp;
         foreach (Transform el in transform)
         {
-            if (TryGetComponent<Grow>(out childTemp))
+            if (el.TryGetComponent<Grow>(out childTemp))
                 childs.Add(childTemp);
         }
     }
@@ -33,12 +33,11 @@ public class Grow : MonoBehaviour
     public void StartGrow()
     {
         StartCoroutine(MoveToPosition());
-        StartCoroutine(GrowChilds());
+        GrowChilds();
     }
 
-    private IEnumerator GrowChilds()
+    private void GrowChilds()
     {
-        yield return new WaitForSeconds(1f);
         foreach (Grow child in childs)
         {
             child.StartGrow();
@@ -57,6 +56,7 @@ public class Grow : MonoBehaviour
                 yield return null;
             }
         }
+
 
     }
 

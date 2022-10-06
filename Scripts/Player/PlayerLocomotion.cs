@@ -9,19 +9,23 @@ namespace Kirill
         public Rigidbody2D rb;
         public InputHandler inputHandler;
 
-        public float rotationSpeed;
-        public float movementSpeed;
+        [SerializeField] private float rotationSpeed;
+        [SerializeField] private float movementSpeed;
+
+        public float RotationSpeed { get => rotationSpeed; set => movementSpeed = value; }
+        public float MovementSpeed { get => movementSpeed; set => movementSpeed = value; }
+
+        private Transform myTransform;
 
         void Start()
         {
-            rb = GetComponent<Rigidbody2D>();
+            myTransform = transform;
         }
 
 
         void Update()
         {
-            float delta = Time.deltaTime;
-            inputHandler.TickInput(delta);
+            inputHandler.TickInput();
         }
 
         private void FixedUpdate()
@@ -36,7 +40,7 @@ namespace Kirill
         }
         private void MoveHandler()
         {
-            rb.AddForce(transform.up * inputHandler.vertical * movementSpeed);
+            rb.AddForce(myTransform.up * inputHandler.vertical * movementSpeed);
         }
 
     }

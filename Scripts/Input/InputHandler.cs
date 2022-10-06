@@ -8,9 +8,13 @@ namespace Kirill
     {
         public float horizontal;
         public float vertical;
-        public float moveAmount;
 
         public Vector2 movementInput;
+
+        public Vector2 mouseInput;
+
+        public float cameraScroller;
+
 
         private PlayerControls inputActions;
 
@@ -21,6 +25,8 @@ namespace Kirill
             {
                 inputActions = new PlayerControls();
                 inputActions.PlayerMovement.Movement.performed += inputKeyboad => movementInput = inputKeyboad.ReadValue<Vector2>();
+                inputActions.PlayerMouse.Mouse.performed += inputMouse => mouseInput = inputMouse.ReadValue<Vector2>();
+                inputActions.PlayerMouse.Scroll.performed += inputMouseScroll => cameraScroller = inputMouseScroll.ReadValue<float>();
             }
 
             inputActions.Enable();
@@ -31,16 +37,15 @@ namespace Kirill
             inputActions.Disable();
         }
 
-        public void TickInput(float delta)
+        public void TickInput()
         {
-            MoveInput(delta);
+            MoveInput();
         }
 
-        private void MoveInput(float delta)
+        private void MoveInput()
         {
             horizontal = movementInput.x;
             vertical = movementInput.y;
-            moveAmount = Mathf.Clamp01(Mathf.Abs(horizontal) + Mathf.Abs(vertical));
         }
     }
  
