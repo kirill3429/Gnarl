@@ -12,7 +12,6 @@ public class DefaultBullet : Bullet
     {
         float delta = Time.deltaTime;
         moveBehaviour.Move(delta);
-        Health health = new Health();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

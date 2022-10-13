@@ -1,21 +1,20 @@
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 public class Gnarl : MonoBehaviour
 {
-    private int maxWeight = 3;
+    
 
-    private List<IBuild> selfBuilds = new List<IBuild>();
-    public List<IBuild> AttachedBuilds { get => selfBuilds; }
+    private List<Build> selfBuilds = new List<Build>();
+    public List<Build> AttachedBuilds { get => selfBuilds; }
 
 
-    protected void FindBuilds(ref List<IBuild> builds)
+    protected void FindBuilds(ref List<Build> builds)
     {
 
         foreach (Transform element in transform)
         {
-            if (element.gameObject.TryGetComponent<IBuild>(out IBuild buildTemp))
+            if (element.gameObject.TryGetComponent<Build>(out Build buildTemp))
             {
                 builds.Add(buildTemp);
                 selfBuilds.Add(buildTemp);
@@ -25,24 +24,12 @@ public class Gnarl : MonoBehaviour
         }
     }
 
-    public void AddBuild(IBuild build)
+    public void AddBuild(Build build)
     {
-        int summWeight = 0;
-        selfBuilds.Select(m => summWeight + m.Weight);
-        if (build.Weight + summWeight > maxWeight)
-        {
-            return;
-            // throw exception?
-        }
-        else
-        {
-            selfBuilds.Add(build);
-        }
-
+        selfBuilds.Add(build);
     }
-    public void RemoveBuild(IBuild build)
+    public void RemoveBuild(Build build)
     {
-
         selfBuilds.Remove(build);
     }
 }

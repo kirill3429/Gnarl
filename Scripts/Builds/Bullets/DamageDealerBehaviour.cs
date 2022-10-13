@@ -1,9 +1,9 @@
-﻿using System;
+﻿using UnityEngine;
 
-public class DamageDealerBehaviour
+public abstract class DamageDealerBehaviour : MonoBehaviour
 {
     public void DoDamage(float damage, Health health)
     {
-        throw new NotImplementedException();
+        health.TakeDamage(damage);
     }
 }

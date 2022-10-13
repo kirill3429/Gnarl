@@ -116,6 +116,15 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""MouseClick"",
+                    ""type"": ""Button"",
+                    ""id"": ""1cfbda15-85b7-4f87-8401-d247d00d962d"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -140,6 +149,17 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""action"": ""Scroll"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a68d324f-06af-4c67-8924-bd1d639596ab"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MouseClick"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -153,6 +173,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         m_PlayerMouse = asset.FindActionMap("PlayerMouse", throwIfNotFound: true);
         m_PlayerMouse_Mouse = m_PlayerMouse.FindAction("Mouse", throwIfNotFound: true);
         m_PlayerMouse_Scroll = m_PlayerMouse.FindAction("Scroll", throwIfNotFound: true);
+        m_PlayerMouse_MouseClick = m_PlayerMouse.FindAction("MouseClick", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -247,12 +268,14 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     private IPlayerMouseActions m_PlayerMouseActionsCallbackInterface;
     private readonly InputAction m_PlayerMouse_Mouse;
     private readonly InputAction m_PlayerMouse_Scroll;
+    private readonly InputAction m_PlayerMouse_MouseClick;
     public struct PlayerMouseActions
     {
         private @PlayerControls m_Wrapper;
         public PlayerMouseActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
         public InputAction @Mouse => m_Wrapper.m_PlayerMouse_Mouse;
         public InputAction @Scroll => m_Wrapper.m_PlayerMouse_Scroll;
+        public InputAction @MouseClick => m_Wrapper.m_PlayerMouse_MouseClick;
         public InputActionMap Get() { return m_Wrapper.m_PlayerMouse; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -268,6 +291,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Scroll.started -= m_Wrapper.m_PlayerMouseActionsCallbackInterface.OnScroll;
                 @Scroll.performed -= m_Wrapper.m_PlayerMouseActionsCallbackInterface.OnScroll;
                 @Scroll.canceled -= m_Wrapper.m_PlayerMouseActionsCallbackInterface.OnScroll;
+                @MouseClick.started -= m_Wrapper.m_PlayerMouseActionsCallbackInterface.OnMouseClick;
+                @MouseClick.performed -= m_Wrapper.m_PlayerMouseActionsCallbackInterface.OnMouseClick;
+                @MouseClick.canceled -= m_Wrapper.m_PlayerMouseActionsCallbackInterface.OnMouseClick;
             }
             m_Wrapper.m_PlayerMouseActionsCallbackInterface = instance;
             if (instance != null)
@@ -278,6 +304,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Scroll.started += instance.OnScroll;
                 @Scroll.performed += instance.OnScroll;
                 @Scroll.canceled += instance.OnScroll;
+                @MouseClick.started += instance.OnMouseClick;
+                @MouseClick.performed += instance.OnMouseClick;
+                @MouseClick.canceled += instance.OnMouseClick;
             }
         }
     }
@@ -290,5 +319,6 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     {
         void OnMouse(InputAction.CallbackContext context);
         void OnScroll(InputAction.CallbackContext context);
+        void OnMouseClick(InputAction.CallbackContext context);
     }
 }

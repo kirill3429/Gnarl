@@ -2,28 +2,47 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Spike : MonoBehaviour, IBuild
+public class Spike : Build
 {
     [SerializeField] private float damage;
-    [SerializeField] private int weight;
+
+    private Animator animator;
+    private DamageDealerBehaviour damageDealerBehaviour;
     private Collider2D damageCollider;
-    public int Weight { get => weight;}
 
     private void Awake()
     {
+        damageDealerBehaviour = GetComponent<DamageDealerBehaviour>();
         damageCollider = GetComponent<Collider2D>();
+        animator = GetComponent<Animator>();
     }
 
-    public void Activate()
+    public override void Activate()
     {
         damageCollider.enabled = true;
     }
 
-    public void Deactivate()
+    public override void Deactivate()
     {
         damageCollider.enabled = false;
     }
 
+    private void FixedUpdate()
+    {
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName("Perform"))
+        {
+            damageCollider.enabled = true;
+        }
+        else
+        {
+            damageCollider.enabled = false;
+        }
+    }
+
+    public override void Perform()
+    {
+        animator.SetTrigger("Perform");
+    }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -31,7 +50,7 @@ public class Spike : MonoBehaviour, IBuild
 
         if (collisionGameObject.TryGetComponent<Health>(out Health tempHealth))
         {
-            tempHealth.TakeDamage(damage);
+            damageDealerBehaviour.DoDamage(damage, tempHealth);
         }
         Vector2 pushDirection = collisionGameObject.transform.position - transform.position;
         collisionGameObject.GetComponent<Rigidbody2D>().AddForce(pushDirection.normalized * 100, ForceMode2D.Impulse);
