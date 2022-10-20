@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GnarlEditor : MonoBehaviour
+public class GnarlEditorFreeSlotsRenderer : MonoBehaviour
 {
     [SerializeField] private FreeSlot freeSlotPrefab;
     [SerializeField] private int slots;
@@ -12,9 +12,12 @@ public class GnarlEditor : MonoBehaviour
     private List<FreeSlot> freeSlots = new List<FreeSlot>();
     private int spawnDistance = 10;
 
-    private void Start()
+    private void Awake()
     {
-        EnableEditorMode();
+        if (GnalEditorEnabler.isActive)
+        {
+            EnableEditorMode();
+        }
     }
 
     public void EnableEditorMode()

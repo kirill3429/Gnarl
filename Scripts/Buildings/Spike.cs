@@ -15,6 +15,7 @@ public class Spike : Build
         damageDealerBehaviour = GetComponent<DamageDealerBehaviour>();
         damageCollider = GetComponent<Collider2D>();
         animator = GetComponent<Animator>();
+        Activate();
     }
 
     public override void Activate()
@@ -51,7 +52,12 @@ public class Spike : Build
         if (collisionGameObject.TryGetComponent<Health>(out Health tempHealth))
         {
             damageDealerBehaviour.DoDamage(damage, tempHealth);
+            Push(collisionGameObject);
         }
+    }
+
+    private void Push(GameObject collisionGameObject)
+    {
         Vector2 pushDirection = collisionGameObject.transform.position - transform.position;
         collisionGameObject.GetComponent<Rigidbody2D>().AddForce(pushDirection.normalized * 100, ForceMode2D.Impulse);
     }

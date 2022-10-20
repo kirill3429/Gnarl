@@ -3,12 +3,11 @@ using UnityEngine;
 using Kirill;
 using System;
 
-public class GnarlEditorManager : MonoBehaviour
+public class GnarlEditorBuildCreator : MonoBehaviour
 {
     [SerializeField] private InputHandler inputHandler;
 
     private GameObject freeBuild;
-    private Transform freeBuildTransform;
     private Camera mainCamera;
 
 
@@ -17,6 +16,10 @@ public class GnarlEditorManager : MonoBehaviour
         mainCamera = Camera.main;
     }
 
+    private void OnDisable()
+    {
+        Destroy(freeBuild);
+    }
 
 
     public void CreateBuilding(GameObject buildToSpawn)
@@ -24,7 +27,6 @@ public class GnarlEditorManager : MonoBehaviour
         if (freeBuild == null)
         {
             freeBuild = Instantiate(buildToSpawn);
-            freeBuildTransform = freeBuild.transform;
         }
         else
         {
@@ -44,21 +46,27 @@ public class GnarlEditorManager : MonoBehaviour
     {
         Ray ray = mainCamera.ScreenPointToRay(inputHandler.mouseInput);
         Plane ground = new Plane(-Vector3.forward, Vector3.zero);
-
+        if (inputHandler.mouseRightClick)
+        {
+            Destroy(freeBuild);
+            return;
+        }
         if (Physics.Raycast(ray, out RaycastHit hit))
         {
+            
             if (hit.collider.CompareTag("freeSlot"))
             {
                 var slotComponent = hit.collider.GetComponent<FreeSlot>();
                 freeBuild.transform.position = hit.transform.position;
                 freeBuild.transform.up = hit.transform.position - slotComponent.GnarlHost.position;
-
-                if (inputHandler.mouseLeftClick)
+                if (inputHandler.mouseRightClick)
                 {
-                    Debug.Log(slotComponent.Degree);
-                    
-                    freeBuild.transform.SetParent(hit.transform.parent);
-                    freeBuild = null;
+                    Destroy(freeBuild);
+                    return;
+                }
+                else if (inputHandler.mouseLeftClick)
+                {   
+                    AttachBuild(hit.transform.parent);
                 }
 
                 return;
@@ -71,5 +79,17 @@ public class GnarlEditorManager : MonoBehaviour
             freeBuild.transform.position = worldPosition;
         }
 
+    }
+
+    private void AttachBuild(Transform t)
+    {
+        freeBuild.transform.SetParent(t);
+        freeBuild = null;
+        TakeCoins(freeBuild.GetComponent<ShopItemInfo>());
+    }
+
+    private void TakeCoins(ShopItemInfo info)
+    {
+        //take money
     }
 }

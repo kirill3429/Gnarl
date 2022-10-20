@@ -15,6 +15,11 @@ namespace Kirill
 
         public float cameraScroller;
         public bool mouseLeftClick = false;
+        public bool mouseRightClick = false;
+
+
+        public delegate void OnEditorToogleButtonDown();
+        public event OnEditorToogleButtonDown editorModeButton;
 
 
         private PlayerControls inputActions;
@@ -29,8 +34,13 @@ namespace Kirill
 
                 inputActions.PlayerMouse.Mouse.performed += inputMouse => mouseInput = inputMouse.ReadValue<Vector2>();
                 inputActions.PlayerMouse.Scroll.performed += inputMouseScroll => cameraScroller = inputMouseScroll.ReadValue<float>();
+
                 inputActions.PlayerMouse.MouseClick.performed += inputMouseClick => mouseLeftClick = true;
                 inputActions.PlayerMouse.MouseClick.canceled += inputMouseCancel => mouseLeftClick = false;
+                inputActions.PlayerMouse.RightMouseClick.performed += inputMouseClick => mouseRightClick = true;
+                inputActions.PlayerMouse.RightMouseClick.canceled += inputMouseCancel => mouseRightClick = false;
+
+                inputActions.PlayerButtons.EditorModeButton.performed += inputEditorButton => editorModeButton?.Invoke();
             }
 
             inputActions.Enable();

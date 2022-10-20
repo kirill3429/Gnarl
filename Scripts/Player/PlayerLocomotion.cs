@@ -12,8 +12,8 @@ namespace Kirill
         [SerializeField] private float rotationSpeed;
         [SerializeField] private float movementSpeed;
 
-        public float RotationSpeed { get => rotationSpeed; set => movementSpeed = value; }
-        public float MovementSpeed { get => movementSpeed; set => movementSpeed = value; }
+        public float RotationSpeed { get => rotationSpeed; set { if (value >= 0) rotationSpeed = value; }  }
+        public float MovementSpeed { get => movementSpeed; set { if (value >= 0) movementSpeed = value; } }
 
         private Transform myTransform;
 

@@ -4,7 +4,6 @@ using UnityEngine;
 public class Gnarl : MonoBehaviour
 {
     
-
     private List<Build> selfBuilds = new List<Build>();
     public List<Build> AttachedBuilds { get => selfBuilds; }
 

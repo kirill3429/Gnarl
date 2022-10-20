@@ -14,7 +14,7 @@ public class CameraScroller : MonoBehaviour
     }
     private void Update()
     {
-        if (inputHandler.cameraScroller != 0)
+        if (inputHandler.cameraScroller != 0 && GnalEditorEnabler.isActive == false)
         {
             cam.m_Lens.OrthographicSize -= inputHandler.cameraScroller * Time.deltaTime * scrollerSpeed;
         }

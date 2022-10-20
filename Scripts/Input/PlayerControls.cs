@@ -125,6 +125,15 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""RightMouseClick"",
+                    ""type"": ""Button"",
+                    ""id"": ""e2a795dd-2a0e-485b-865f-7d5be8b6151f"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -160,6 +169,45 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""action"": ""MouseClick"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a138545c-5dda-4f28-93fe-7ff174879ae7"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""RightMouseClick"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""PlayerButtons"",
+            ""id"": ""69681d8a-fa73-45f1-80bb-f03a20fff162"",
+            ""actions"": [
+                {
+                    ""name"": ""EditorModeButton"",
+                    ""type"": ""Button"",
+                    ""id"": ""1d782d3a-1b68-4223-aa98-ce5a623cd70f"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""f58dfcbc-1909-4ba5-a77e-c55ff4918e60"",
+                    ""path"": ""<Keyboard>/tab"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""EditorModeButton"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -174,6 +222,10 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         m_PlayerMouse_Mouse = m_PlayerMouse.FindAction("Mouse", throwIfNotFound: true);
         m_PlayerMouse_Scroll = m_PlayerMouse.FindAction("Scroll", throwIfNotFound: true);
         m_PlayerMouse_MouseClick = m_PlayerMouse.FindAction("MouseClick", throwIfNotFound: true);
+        m_PlayerMouse_RightMouseClick = m_PlayerMouse.FindAction("RightMouseClick", throwIfNotFound: true);
+        // PlayerButtons
+        m_PlayerButtons = asset.FindActionMap("PlayerButtons", throwIfNotFound: true);
+        m_PlayerButtons_EditorModeButton = m_PlayerButtons.FindAction("EditorModeButton", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -269,6 +321,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     private readonly InputAction m_PlayerMouse_Mouse;
     private readonly InputAction m_PlayerMouse_Scroll;
     private readonly InputAction m_PlayerMouse_MouseClick;
+    private readonly InputAction m_PlayerMouse_RightMouseClick;
     public struct PlayerMouseActions
     {
         private @PlayerControls m_Wrapper;
@@ -276,6 +329,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         public InputAction @Mouse => m_Wrapper.m_PlayerMouse_Mouse;
         public InputAction @Scroll => m_Wrapper.m_PlayerMouse_Scroll;
         public InputAction @MouseClick => m_Wrapper.m_PlayerMouse_MouseClick;
+        public InputAction @RightMouseClick => m_Wrapper.m_PlayerMouse_RightMouseClick;
         public InputActionMap Get() { return m_Wrapper.m_PlayerMouse; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -294,6 +348,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @MouseClick.started -= m_Wrapper.m_PlayerMouseActionsCallbackInterface.OnMouseClick;
                 @MouseClick.performed -= m_Wrapper.m_PlayerMouseActionsCallbackInterface.OnMouseClick;
                 @MouseClick.canceled -= m_Wrapper.m_PlayerMouseActionsCallbackInterface.OnMouseClick;
+                @RightMouseClick.started -= m_Wrapper.m_PlayerMouseActionsCallbackInterface.OnRightMouseClick;
+                @RightMouseClick.performed -= m_Wrapper.m_PlayerMouseActionsCallbackInterface.OnRightMouseClick;
+                @RightMouseClick.canceled -= m_Wrapper.m_PlayerMouseActionsCallbackInterface.OnRightMouseClick;
             }
             m_Wrapper.m_PlayerMouseActionsCallbackInterface = instance;
             if (instance != null)
@@ -307,10 +364,46 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @MouseClick.started += instance.OnMouseClick;
                 @MouseClick.performed += instance.OnMouseClick;
                 @MouseClick.canceled += instance.OnMouseClick;
+                @RightMouseClick.started += instance.OnRightMouseClick;
+                @RightMouseClick.performed += instance.OnRightMouseClick;
+                @RightMouseClick.canceled += instance.OnRightMouseClick;
             }
         }
     }
     public PlayerMouseActions @PlayerMouse => new PlayerMouseActions(this);
+
+    // PlayerButtons
+    private readonly InputActionMap m_PlayerButtons;
+    private IPlayerButtonsActions m_PlayerButtonsActionsCallbackInterface;
+    private readonly InputAction m_PlayerButtons_EditorModeButton;
+    public struct PlayerButtonsActions
+    {
+        private @PlayerControls m_Wrapper;
+        public PlayerButtonsActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @EditorModeButton => m_Wrapper.m_PlayerButtons_EditorModeButton;
+        public InputActionMap Get() { return m_Wrapper.m_PlayerButtons; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(PlayerButtonsActions set) { return set.Get(); }
+        public void SetCallbacks(IPlayerButtonsActions instance)
+        {
+            if (m_Wrapper.m_PlayerButtonsActionsCallbackInterface != null)
+            {
+                @EditorModeButton.started -= m_Wrapper.m_PlayerButtonsActionsCallbackInterface.OnEditorModeButton;
+                @EditorModeButton.performed -= m_Wrapper.m_PlayerButtonsActionsCallbackInterface.OnEditorModeButton;
+                @EditorModeButton.canceled -= m_Wrapper.m_PlayerButtonsActionsCallbackInterface.OnEditorModeButton;
+            }
+            m_Wrapper.m_PlayerButtonsActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @EditorModeButton.started += instance.OnEditorModeButton;
+                @EditorModeButton.performed += instance.OnEditorModeButton;
+                @EditorModeButton.canceled += instance.OnEditorModeButton;
+            }
+        }
+    }
+    public PlayerButtonsActions @PlayerButtons => new PlayerButtonsActions(this);
     public interface IPlayerMovementActions
     {
         void OnMovement(InputAction.CallbackContext context);
@@ -320,5 +413,10 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         void OnMouse(InputAction.CallbackContext context);
         void OnScroll(InputAction.CallbackContext context);
         void OnMouseClick(InputAction.CallbackContext context);
+        void OnRightMouseClick(InputAction.CallbackContext context);
+    }
+    public interface IPlayerButtonsActions
+    {
+        void OnEditorModeButton(InputAction.CallbackContext context);
     }
 }
