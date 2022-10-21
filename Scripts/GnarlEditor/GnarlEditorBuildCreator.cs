@@ -56,7 +56,7 @@ public class GnarlEditorBuildCreator : MonoBehaviour
             
             if (hit.collider.CompareTag("freeSlot"))
             {
-                var slotComponent = hit.collider.GetComponent<FreeSlot>();
+                var slotComponent = hit.collider.GetComponent<Slot>();
                 freeBuild.transform.position = hit.transform.position;
                 freeBuild.transform.up = hit.transform.position - slotComponent.GnarlHost.position;
                 if (inputHandler.mouseRightClick)
@@ -85,7 +85,7 @@ public class GnarlEditorBuildCreator : MonoBehaviour
     {
         freeBuild.transform.SetParent(t);
         freeBuild = null;
-        TakeCoins(freeBuild.GetComponent<ShopItemInfo>());
+        //TakeCoins(freeBuild.GetComponent<ShopItemInfo>());
     }
 
     private void TakeCoins(ShopItemInfo info)

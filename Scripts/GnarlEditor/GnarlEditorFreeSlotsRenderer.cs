@@ -1,79 +1,94 @@
 using System;
+using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Kirill;
 
 public class GnarlEditorFreeSlotsRenderer : MonoBehaviour
 {
-    [SerializeField] private FreeSlot freeSlotPrefab;
+    [SerializeField] private Slot freeSlotPrefab;
     [SerializeField] private int slots;
 
-    private List<int> TakenPlaces = new List<int>();
-    private List<FreeSlot> freeSlots = new List<FreeSlot>();
+    private InputHandler inputHandler;
+    private List<int> takenPlaces = new List<int>();
+    private List<Slot> allSlots = new List<Slot>();
     private int spawnDistance = 10;
 
-    private void Awake()
+    private void Start()
+    {
+        InitSlots();
+        ClearFreeSlotsView();
+        inputHandler = GetComponentInParent<InputHandler>();
+        inputHandler.editorModeButton += ToogleEditorMode;
+    }
+
+    private void OnDestroy()
+    {
+        inputHandler.editorModeButton -= ToogleEditorMode;
+    }
+
+    private void ToogleEditorMode()
     {
         if (GnalEditorEnabler.isActive)
         {
-            EnableEditorMode();
+            RenderSlots();
+        }
+        else
+        {
+            ClearFreeSlotsView();
         }
     }
 
-    public void EnableEditorMode()
-    {
-        RenderSlots();
-    }
-    public void DisableEditorMode()
-    {
-        ClearFreeSlotsView();
-    }
 
-
-    private void RenderSlots()
+    private void InitSlots()
     {
         int slotDegree = 360 / slots;
         int spawnDegree = 0;
 
         for (int i = 0; i < slots; i++)
         {
-            if (!TakenPlaces.Contains(spawnDegree))
-            {
-                Vector3 positionToSpawn = CreateSpawnPoint(spawnDegree, spawnDistance);
-                FreeSlot freeSlot = Instantiate(freeSlotPrefab, positionToSpawn, Quaternion.identity, transform);
-                freeSlot.Degree = spawnDegree;
-                freeSlot.GnarlHost = transform;
-                freeSlots.Add(freeSlot);
-            }
+
+            Vector3 positionToSpawn = CreateSpawnPoint(spawnDegree, spawnDistance);
+            Slot freeSlot = Instantiate(freeSlotPrefab, positionToSpawn, Quaternion.identity, transform);
+            freeSlot.Degree = spawnDegree;
+            freeSlot.GnarlHost = transform;
+            allSlots.Add(freeSlot);
             spawnDegree += slotDegree;
+        }
+    }
+
+    private void RenderSlots()
+    {
+        foreach (Slot slot in allSlots)
+        {
+            if (!takenPlaces.Contains(slot.Degree))
+            {
+                slot.gameObject.SetActive(true);
+            }
         }
     }
 
     public void AttachToGnarl(int degree)
     {
-        TakenPlaces.Add(degree);
-        UpdateSlotsView();
+        takenPlaces.Add(degree);
+        var slot = allSlots.First(m => m.Degree == degree);
+        slot.gameObject.SetActive(false);
         
     }
     public void RemoveFromGnarl(int degree)
     {
-        TakenPlaces.Remove(degree);
-        UpdateSlotsView();
-
-    }
-
-    private void UpdateSlotsView()
-    {
-        ClearFreeSlotsView();
-        RenderSlots();
+        takenPlaces.Remove(degree);
+        var slot = allSlots.First(m => m.Degree == degree);
+        slot.gameObject.SetActive(true);
 
     }
 
     private void ClearFreeSlotsView()
     {
-        foreach (FreeSlot slot in freeSlots)
+        foreach (Slot slot in allSlots)
         {
-            Destroy(slot.gameObject);
+            slot.gameObject.SetActive(false);
         }
     }
 
@@ -81,8 +96,8 @@ public class GnarlEditorFreeSlotsRenderer : MonoBehaviour
     {
         Vector2 positionToSpawn = new Vector2();
 
-        positionToSpawn.x = placementDistance * Mathf.Cos(degree * Mathf.Deg2Rad);
-        positionToSpawn.y = placementDistance * Mathf.Sin(degree * Mathf.Deg2Rad);
+        positionToSpawn.x = transform.position.x + placementDistance * Mathf.Cos(degree * Mathf.Deg2Rad);
+        positionToSpawn.y = transform.position.y + placementDistance * Mathf.Sin(degree * Mathf.Deg2Rad);
 
         return positionToSpawn;
     }
