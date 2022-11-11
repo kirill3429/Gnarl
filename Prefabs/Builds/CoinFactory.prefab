@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5337388492750504390}
   - component: {fileID: 5337388492750504391}
+  - component: {fileID: 4998722878468427024}
   m_Layer: 0
   m_Name: CoinFactory
   m_TagString: Untagged
@@ -85,6 +86,21 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &4998722878468427024
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5337388492750504388}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9746bce0bba54d14daca2107e4ce93dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cooldown: 4
+  coinsPerPeriod: 1000
+  messageColor: {r: 0.95148075, g: 0.9529412, b: 0.08627451, a: 1}
 --- !u!1 &5337388493912549900
 GameObject:
   m_ObjectHideFlags: 0

@@ -42,6 +42,7 @@ public class Spike : Build
 
     public override void Perform()
     {
+        base.Perform();
         animator.SetTrigger("Perform");
     }
 

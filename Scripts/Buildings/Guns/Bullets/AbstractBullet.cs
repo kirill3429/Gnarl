@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-public abstract class Bullet : MonoBehaviour
+public abstract class AbstractBullet : MonoBehaviour
 {
     [SerializeField] protected float damage;
     public float Damage { get; set; }

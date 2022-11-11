@@ -99,8 +99,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6e7c730f14714b4db0ad7e5afb9101e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cooldown: 0
-  tier: 0
+  cooldown: 5
   bullet: {fileID: 3483351361505117959, guid: 652931e0d171fc74f8c981a6678a69b4, type: 3}
   bulletSocket: {fileID: 5259744927001477913}
 --- !u!70 &8228451204649027068
@@ -143,7 +142,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6719134341663469683}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.2399999, y: 0.5600008, z: 0}
+  m_LocalPosition: {x: 0, y: 1.07, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

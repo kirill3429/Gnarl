@@ -1,4 +1,4 @@
-using Kirill;
+
 using UnityEngine;
 using Cinemachine;
 
@@ -14,7 +14,7 @@ public class CameraScroller : MonoBehaviour
     }
     private void Update()
     {
-        if (inputHandler.cameraScroller != 0 && GnalEditorEnabler.isActive == false)
+        if (inputHandler.cameraScroller != 0 && EditorEnabler.isActive == false)
         {
             cam.m_Lens.OrthographicSize -= inputHandler.cameraScroller * Time.deltaTime * scrollerSpeed;
         }

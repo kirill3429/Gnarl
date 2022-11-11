@@ -10,7 +10,7 @@ public class Health : MonoBehaviour
     public float HP { get => healthPoints; }
     public float MaxHP { get => maxHealthPoints; }
 
-    public void TakeDamage(float damage)
+    public virtual void TakeDamage(float damage)
     {
         if (damage <= 0)
             return;
@@ -19,10 +19,9 @@ public class Health : MonoBehaviour
 
         if (healthPoints <= 0)
             Die();
-        
     }
 
-    public void Heal(float heal)
+    public virtual void Heal(float heal)
     {
         if (heal > 0)
             if (healthPoints + heal > maxHealthPoints)
@@ -30,6 +29,7 @@ public class Health : MonoBehaviour
             else
                 healthPoints += heal;
     }
+
 
     private void Die()
     {

@@ -1,9 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Kirill;
 
-public class GnalEditorEnabler : MonoBehaviour
+
+public class EditorEnabler : MonoBehaviour
 {
     [SerializeField] private InputHandler inputHandler;
     [SerializeField] private GameObject editor;

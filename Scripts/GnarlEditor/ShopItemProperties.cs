@@ -1,26 +1,26 @@
-using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class ShopItemInfo : MonoBehaviour
+public class ShopItemProperties : MonoBehaviour
 {
     public TextMeshProUGUI ItemName;
     public TextMeshProUGUI ItemDescription;
     public TextMeshProUGUI ItemAdvancedDescription;
     public TextMeshProUGUI Cost;
+    public int CostInt;
     public Image IconImage;
     public GameObject ItemPrefab;
-    public GnarlEditorBuildCreator gnarlEditorBuildCreator;
+    public EditorBuildCreator gnarlEditorBuildCreator;
 
-    private void Awake()
+    private void Start()
     {
         GetComponent<Button>().onClick.AddListener(CreateObject);
     }
 
     public void CreateObject()
     {
-        gnarlEditorBuildCreator.CreateBuilding(ItemPrefab);
+        gnarlEditorBuildCreator.CreateBuild(ItemPrefab, CostInt);
     }
 }

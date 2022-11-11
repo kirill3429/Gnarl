@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Gnarl : MonoBehaviour
+public class BuildsController : MonoBehaviour
 {
     
     private List<Build> selfBuilds = new List<Build>();
@@ -18,8 +18,11 @@ public class Gnarl : MonoBehaviour
                 builds.Add(buildTemp);
                 selfBuilds.Add(buildTemp);
             }
-            if (element.gameObject.TryGetComponent<Gnarl>(out Gnarl tempGnarl))
+            if (element.gameObject.TryGetComponent<BuildsController>(out BuildsController tempGnarl))
+            {
                 tempGnarl.FindBuilds(ref builds);
+
+            }
         }
     }
 

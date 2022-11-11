@@ -7,10 +7,6 @@ public class ForwardGun : Build
     [SerializeField] private GameObject bullet;
     [SerializeField] private Transform bulletSocket;
 
-    private void Awake()
-    {
-        Activate();
-    }
 
     public override void Activate()
     {
@@ -24,6 +20,7 @@ public class ForwardGun : Build
 
     public override void Perform()
     {
+        base.Perform();
         Instantiate(bullet, bulletSocket.position, bulletSocket.rotation);
     }
 }

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class DefaultBullet : Bullet
+public class DefaultBullet : AbstractBullet
 {
 
     private void Awake()
