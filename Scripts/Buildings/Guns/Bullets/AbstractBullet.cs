@@ -2,9 +2,23 @@
 public abstract class AbstractBullet : MonoBehaviour
 {
     [SerializeField] protected float damage;
-    public float Damage { get; set; }
+    [SerializeField] protected float lifeTime;
+    protected float shotStartTime;
     public BulletMoveBehaviour moveBehaviour;
     public DamageDealerBehaviour damageDealerBehaviour;
 
-    public void Move() { moveBehaviour.Move(Time.deltaTime); }
+    protected void OnEnable()
+    {
+        shotStartTime = Time.time;
+    }
+
+    protected virtual void Update()
+    {
+        if (Time.time - shotStartTime > lifeTime)
+        {
+            // return to Pool;
+        }
+        moveBehaviour.Move(Time.deltaTime);
+    }
+
 }

@@ -17,4 +17,4 @@ MonoBehaviour:
   Description: "\u041E\u043F\u0438\u0441\u0430\u043D\u0438\u0435"
   AdvancedDescription: "\u0414\u043E\u043F. \u043E\u043F\u0438\u0441\u0430\u043D\u0438\u0435"
   Cost: 100
-  BuildPrefab: {fileID: 8330575505599450620, guid: 501bd6f435d490c438dddbb4faaa1e87, type: 3}
+  BuildPrefab: {fileID: 8541787359813991661, guid: 3922c3dd893faf54e9610f409414f828, type: 3}

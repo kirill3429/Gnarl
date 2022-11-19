@@ -2,7 +2,7 @@ using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
 
-
+[RequireComponent(typeof(FreeSlotsInitializer))]
 public class FreeSlotsEnabler : MonoBehaviour
 {
     private InputHandler inputHandler;
@@ -13,7 +13,7 @@ public class FreeSlotsEnabler : MonoBehaviour
     {
         allSlots = GetComponent<FreeSlotsInitializer>().allSlots;
 
-        inputHandler = GetComponentInParent<InputHandler>();
+        inputHandler = FindObjectOfType<InputHandler>();
         inputHandler.editorModeButton += ToogleEditorMode;
         HideSlots();
     }
@@ -25,7 +25,7 @@ public class FreeSlotsEnabler : MonoBehaviour
 
     private void ToogleEditorMode()
     {
-        if (EditorEnabler.isActive)
+        if (!EditorEnabler.isActive)
         {
             HideSlots();
         }

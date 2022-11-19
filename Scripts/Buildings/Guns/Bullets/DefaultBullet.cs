@@ -2,16 +2,14 @@ using UnityEngine;
 
 public class DefaultBullet : AbstractBullet
 {
-
-    private void Awake()
+    private void Start()
     {
         moveBehaviour = GetComponent<BulletMoveBehaviour>();
     }
 
-    private void Update()
+    protected override void Update()
     {
-        float delta = Time.deltaTime;
-        moveBehaviour.Move(delta);
+        base.Update();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

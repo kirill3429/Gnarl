@@ -6,7 +6,7 @@ public class ShopItemsInitializer : MonoBehaviour
     public BuildScriptable[] builds;
     [SerializeField] private Transform shopContent;
     [SerializeField] private GameObject itemPrefab;
-    [SerializeField] private EditorBuildCreator gnarlEditorCreator;
+    [SerializeField] private EditorStateMachine gnarlEditorCreator;
 
     private void Start()
     {

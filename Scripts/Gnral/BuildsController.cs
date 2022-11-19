@@ -13,14 +13,14 @@ public class BuildsController : MonoBehaviour
 
         foreach (Transform element in transform)
         {
-            if (element.gameObject.TryGetComponent<Build>(out Build buildTemp))
+            if (element.gameObject.TryGetComponent<Build>(out Build build))
             {
-                builds.Add(buildTemp);
-                selfBuilds.Add(buildTemp);
+                builds.Add(build);
+                selfBuilds.Add(build);
             }
-            if (element.gameObject.TryGetComponent<BuildsController>(out BuildsController tempGnarl))
+            if (element.gameObject.TryGetComponent<GnarlConnector>(out GnarlConnector connector))
             {
-                tempGnarl.FindBuilds(ref builds);
+                connector.childGnarl.GetComponent<BuildsController>().FindBuilds(ref builds);
 
             }
         }

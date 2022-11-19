@@ -34,15 +34,16 @@ public class InputHandler : MonoBehaviour
             inputActions.PlayerMouse.Mouse.performed += inputMouse => mouseInput = inputMouse.ReadValue<Vector2>();
             inputActions.PlayerMouse.Scroll.performed += inputMouseScroll => cameraScroller = inputMouseScroll.ReadValue<float>();
 
-            inputActions.PlayerMouse.MouseClick.performed += inputMouseClick => mouseLeftClick = true;
-            inputActions.PlayerMouse.MouseClick.canceled += inputMouseCancel => mouseLeftClick = false;
-            inputActions.PlayerMouse.RightMouseClick.performed += inputMouseClick => mouseRightClick = true;
-            inputActions.PlayerMouse.RightMouseClick.canceled += inputMouseCancel => mouseRightClick = false;
-
             inputActions.PlayerButtons.EditorModeButton.performed += inputEditorButton => editorModeButton?.Invoke();
         }
 
         inputActions.Enable();
+    }
+
+    private void TickMouseClick()
+    {
+        mouseLeftClick = inputActions.PlayerMouse.MouseClick.WasPerformedThisFrame();
+        mouseRightClick = inputActions.PlayerMouse.RightMouseClick.WasPerformedThisFrame();
     }
 
     private void OnDisable()
@@ -53,6 +54,7 @@ public class InputHandler : MonoBehaviour
     public void TickInput()
     {
         MoveInput();
+        TickMouseClick();
     }
 
     private void MoveInput()

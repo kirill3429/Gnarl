@@ -99,7 +99,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6e7c730f14714b4db0ad7e5afb9101e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cooldown: 5
+  cooldown: 1
   bullet: {fileID: 3483351361505117959, guid: 652931e0d171fc74f8c981a6678a69b4, type: 3}
   bulletSocket: {fileID: 5259744927001477913}
 --- !u!70 &8228451204649027068

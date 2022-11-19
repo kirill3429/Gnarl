@@ -12,7 +12,7 @@ public class ShopItemProperties : MonoBehaviour
     public int CostInt;
     public Image IconImage;
     public GameObject ItemPrefab;
-    public EditorBuildCreator gnarlEditorBuildCreator;
+    public EditorStateMachine gnarlEditorBuildCreator;
 
     private void Start()
     {
