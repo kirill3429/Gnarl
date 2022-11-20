@@ -26,10 +26,12 @@ public class GnarlState : EditorState
         if (ground.Raycast(ray, out float position))
         {
             Vector2 mouseWorldPosition = ray.GetPoint(position);
-            stateMachine.freeGnarl.transform.position = (stateMachine.freeBuild.transform.up
-                * ((Vector3)mouseWorldPosition - stateMachine.freeBuild.transform.position).magnitude) + stateMachine.freeBuild.transform.position;
+            stateMachine.freeGnarl.transform.position = stateMachine.freeBuild.transform.up
+                * Mathf.Clamp(((Vector3)mouseWorldPosition - stateMachine.freeBuild.transform.position).magnitude,0, 15) + stateMachine.freeBuild.transform.position;
 
-            if (stateMachine.InputHandler.mouseLeftClick)
+            
+
+            if (stateMachine.InputHandler.mouseLeftClick && CanAttach(stateMachine.freeGnarl))
             {
                 Attach();
             }
@@ -38,11 +40,25 @@ public class GnarlState : EditorState
         
     }
 
+    private bool CanAttach(GameObject go)
+    {
+        var collider = go.GetComponent<Collider2D>();
+        ContactFilter2D filter2D = new ContactFilter2D();
+        filter2D.NoFilter();
+        Collider2D[] collisions = new Collider2D[1];
+        if (collider.OverlapCollider(filter2D, collisions) == 0)
+        {
+            return true;
+        }
+        return false;
+    }
+
     private void Attach()
     {
         AttachBuild(stateMachine.currentSlot.transform.parent);
         stateMachine.slotsEnabler = stateMachine.currentSlot.GnarlHost.GetComponent<FreeSlotsEnabler>();
         stateMachine.slotsEnabler.AttachToGnarl(stateMachine.currentSlot.Degree);
+        stateMachine.slotsEnabler.ShowSlots();
 
         CoinsManager.singleton.TakeCoins(stateMachine.freeBuildCost);
 

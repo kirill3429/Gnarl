@@ -36,7 +36,7 @@ public class FreeSlotsEnabler : MonoBehaviour
     }
 
 
-    private void ShowSlots()
+    public void ShowSlots()
     {
         foreach (Slot slot in allSlots)
         {
