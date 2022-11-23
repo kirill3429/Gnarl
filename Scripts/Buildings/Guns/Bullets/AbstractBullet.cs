@@ -1,8 +1,12 @@
 ﻿using UnityEngine;
+using UnityEngine.Pool;
 public abstract class AbstractBullet : MonoBehaviour
 {
     [SerializeField] protected float damage;
     [SerializeField] protected float lifeTime;
+    [SerializeField] protected GameObject effectPrefab;
+    protected ObjectPool<AbstractBullet> bulletPool;
+    protected ObjectPool<GameObject> effectPool;
     protected float shotStartTime;
     public BulletMoveBehaviour moveBehaviour;
     public DamageDealerBehaviour damageDealerBehaviour;
@@ -16,9 +20,14 @@ public abstract class AbstractBullet : MonoBehaviour
     {
         if (Time.time - shotStartTime > lifeTime)
         {
-            // return to Pool;
+            bulletPool.Release(this);
         }
         moveBehaviour.Move(Time.deltaTime);
     }
 
+    public void SetPool(ObjectPool<AbstractBullet> bulletPool, ObjectPool<GameObject> effectPool)
+    {
+        this.bulletPool = bulletPool;
+        this.effectPool = effectPool;
+    }
 }

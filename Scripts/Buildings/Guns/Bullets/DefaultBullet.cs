@@ -17,6 +17,8 @@ public class DefaultBullet : AbstractBullet
         if (collision.gameObject.TryGetComponent<Health>(out Health health))
         {
             damageDealerBehaviour.DoDamage(damage, health);
+            bulletPool.Release(this);
+            effectPool.Get();
         }
     }
 }

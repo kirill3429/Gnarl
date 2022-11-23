@@ -52,7 +52,7 @@ public class Spike : Build
 
         if (collisionGameObject.TryGetComponent<Health>(out Health tempHealth))
         {
-            damageDealerBehaviour.DoDamage(damage, tempHealth);
+            damageDealerBehaviour.DoDamage(damage, tempHealth); 
             Push(collisionGameObject);
         }
     }

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3487682850081290397}
   - component: {fileID: 84251475700553517}
   - component: {fileID: 7285820074603110910}
+  - component: {fileID: -7895803840129785243}
   m_Layer: 0
   m_Name: Spike
   m_TagString: Untagged
@@ -99,7 +100,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cooldown: 1
-  tier: 0
   damage: 25
 --- !u!70 &7285820074603110910
 CapsuleCollider2D:
@@ -117,3 +117,15 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 1, y: 1.9999999}
   m_Direction: 0
+--- !u!114 &-7895803840129785243
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1950650757975749711}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 445bf1548d558ac4aa429c0e858e1d9c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

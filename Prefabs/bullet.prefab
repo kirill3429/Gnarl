@@ -102,6 +102,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 10
+  lifeTime: 5
   moveBehaviour: {fileID: 4716247214595306975}
   damageDealerBehaviour: {fileID: 6230658740297747826}
 --- !u!70 &3483351361505118010
