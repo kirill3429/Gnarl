@@ -14,11 +14,12 @@ public class DefaultBullet : AbstractBullet
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.TryGetComponent<Health>(out Health health))
+        if (gameObject.activeInHierarchy && collision.gameObject.TryGetComponent<Health>(out Health health))
         {
             damageDealerBehaviour.DoDamage(damage, health);
             bulletPool.Release(this);
-            effectPool.Get();
+            var effect = effectPool.Get();
+            effect.transform.position = transform.position;
         }
     }
 }

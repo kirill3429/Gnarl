@@ -11,6 +11,7 @@ public abstract class BulletMoveBehaviour : MonoBehaviour
 
     public virtual void Move(float delta)
     {
-        myTransform.Translate(myTransform.up * Speed * delta);
+        Vector2 direction = new Vector2(0,1);
+        myTransform.Translate(direction * Speed * delta);
     }
 }

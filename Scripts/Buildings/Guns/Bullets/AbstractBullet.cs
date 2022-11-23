@@ -4,9 +4,8 @@ public abstract class AbstractBullet : MonoBehaviour
 {
     [SerializeField] protected float damage;
     [SerializeField] protected float lifeTime;
-    [SerializeField] protected GameObject effectPrefab;
     protected ObjectPool<AbstractBullet> bulletPool;
-    protected ObjectPool<GameObject> effectPool;
+    protected ObjectPool<Effect> effectPool;
     protected float shotStartTime;
     public BulletMoveBehaviour moveBehaviour;
     public DamageDealerBehaviour damageDealerBehaviour;
@@ -25,7 +24,7 @@ public abstract class AbstractBullet : MonoBehaviour
         moveBehaviour.Move(Time.deltaTime);
     }
 
-    public void SetPool(ObjectPool<AbstractBullet> bulletPool, ObjectPool<GameObject> effectPool)
+    public void SetPool(ObjectPool<AbstractBullet> bulletPool, ObjectPool<Effect> effectPool)
     {
         this.bulletPool = bulletPool;
         this.effectPool = effectPool;

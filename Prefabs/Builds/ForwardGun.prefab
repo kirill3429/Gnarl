@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3299473903590340847}
   - component: {fileID: -1532057087852464146}
   - component: {fileID: 8228451204649027068}
+  - component: {fileID: -228847560320324649}
   m_Layer: 0
   m_Name: ForwardGun
   m_TagString: Untagged
@@ -100,8 +101,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cooldown: 1
-  bulletPrefab: {fileID: 3483351361505117958, guid: 652931e0d171fc74f8c981a6678a69b4, type: 3}
-  bulletSocket: {fileID: 5259744927001477913}
 --- !u!70 &8228451204649027068
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -118,6 +117,21 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0.22}
   m_Size: {x: 0.99999994, y: 1.4}
   m_Direction: 0
+--- !u!114 &-228847560320324649
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3299473903590340846}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62c8a8fc60abf3c45ac233ee8d0c89e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletPrefab: {fileID: 3483351361505117958, guid: 652931e0d171fc74f8c981a6678a69b4, type: 3}
+  bulletSocket: {fileID: 5259744927001477913}
+  effectPrefab: {fileID: 2145019715183970959, guid: 173f503cef4a30b46a573178f13afbf5, type: 3}
 --- !u!1 &6719134341663469683
 GameObject:
   m_ObjectHideFlags: 0
