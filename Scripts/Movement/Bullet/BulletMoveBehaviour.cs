@@ -4,7 +4,7 @@ public abstract class BulletMoveBehaviour : MonoBehaviour
     public abstract float Speed { get;}
     protected Transform myTransform;
 
-    protected void Awake()
+    protected void Start()
     {
         myTransform = transform;
     }

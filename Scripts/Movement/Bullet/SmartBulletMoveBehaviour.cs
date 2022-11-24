@@ -18,7 +18,7 @@ public class SmartBulletMoveBehaviour : BulletMoveBehaviour
             {
                 target = targetCollider[0].transform;
             }
-            else
+            else 
             {
                 Translate(myTransform.up, delta);
             }
@@ -26,7 +26,9 @@ public class SmartBulletMoveBehaviour : BulletMoveBehaviour
         else
         {
             Vector2 direction = target.position - myTransform.position;
-            direction = Vector2.Lerp(myTransform.forward, direction, smooth);
+
+            direction = Vector2.Lerp(myTransform.up, direction.normalized , smooth * delta);
+            myTransform.up = direction;
 
             Translate(direction, delta);
         }
@@ -35,6 +37,6 @@ public class SmartBulletMoveBehaviour : BulletMoveBehaviour
     }
     private void Translate(Vector2 direction, float delta)
     {
-        myTransform.Translate(direction.normalized * speed * delta);
+        myTransform.position = (Vector2)myTransform.position + (direction.normalized * speed * delta);
     }
 }
