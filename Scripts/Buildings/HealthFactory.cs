@@ -7,12 +7,13 @@ public class HealthFactory : Build
     [SerializeField] private Color messageColor;
     private PlayerHealth health;
 
+    private void Start()
+    {
+        health = GetComponentInParent<PlayerHealth>();
+    }
+
     public override void Activate()
     {
-        if (health == null)
-        {
-            health = GetComponentInParent<PlayerHealth>();
-        }
         isActive = true;
     }
 

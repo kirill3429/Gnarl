@@ -8,8 +8,13 @@ public class SinusBulletMoveBehaviour : BulletMoveBehaviour
     public override void Move(float delta)
     {
         var f = Mathf.PingPong(Time.time * speed * speed, 8);
-        Vector2 direction = new Vector2((f - 8), 1 * speed);
+        Vector2 direction = (Vector2)myTransform.up;
 
-        myTransform.Translate(direction * delta);
+        Translate(direction, delta);
+    }
+
+    private void Translate(Vector2 direction, float delta)
+    {
+        myTransform.position = (Vector2)myTransform.position + (direction.normalized * speed * delta);
     }
 }

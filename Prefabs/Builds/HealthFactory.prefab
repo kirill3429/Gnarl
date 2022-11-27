@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8541787358829123366}
   - component: {fileID: 8541787358829123367}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Circle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -95,7 +95,8 @@ GameObject:
   - component: {fileID: 8541787359813991663}
   - component: {fileID: 8541787359813991662}
   - component: {fileID: 8345037602469025045}
-  m_Layer: 0
+  - component: {fileID: -2027879473973131188}
+  m_Layer: 7
   m_Name: HealthFactory
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -185,3 +186,20 @@ MonoBehaviour:
   cooldown: 5
   healthPerPeriod: 5
   messageColor: {r: 0.0537827, g: 1, b: 0, a: 0}
+--- !u!114 &-2027879473973131188
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8541787359813991661}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e4aec434459f314eac475feff223706, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Icon: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  Name: 1
+  Description: 1
+  AdvancedDescription: 1
+  Cost: 1

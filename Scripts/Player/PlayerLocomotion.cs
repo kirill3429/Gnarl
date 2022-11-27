@@ -1,12 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Zenject;
 
 
 public class PlayerLocomotion : MonoBehaviour
 {
     public Rigidbody2D rb;
-    public InputHandler inputHandler;
+    [Inject] private InputHandler inputHandler;
 
     [SerializeField] private float rotationSpeed;
     [SerializeField] private float movementSpeed;

@@ -1,10 +1,11 @@
 
 using UnityEngine;
+using Zenject;
 using Cinemachine;
 
 public class CameraScroller : MonoBehaviour
 {
-    [SerializeField] private InputHandler inputHandler;
+    [Inject] private InputHandler inputHandler;
     [SerializeField] private float scrollerSpeed;
     private CinemachineVirtualCamera cam;
 

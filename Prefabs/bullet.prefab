@@ -11,11 +11,11 @@ GameObject:
   - component: {fileID: 3483351361505117956}
   - component: {fileID: 3483351361505117957}
   - component: {fileID: 3483351361505117958}
-  - component: {fileID: 6230658740297747826}
   - component: {fileID: 4698182929676430434}
+  - component: {fileID: 6230658740297747826}
   - component: {fileID: 3483351361505118010}
   - component: {fileID: 3283171112583665171}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: bullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -103,20 +103,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 10
   lifeTime: 5
-  moveBehaviour: {fileID: 4698182929676430434}
+  moveBehaviour: {fileID: 0}
   damageDealerBehaviour: {fileID: 6230658740297747826}
---- !u!114 &6230658740297747826
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3483351361505117959}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 445bf1548d558ac4aa429c0e858e1d9c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &4698182929676430434
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -130,11 +118,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 30
-  searchRadius: 50
+  searchRadius: 300
   smooth: 3.4
   enemyLayer:
     serializedVersion: 2
     m_Bits: 64
+--- !u!114 &6230658740297747826
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3483351361505117959}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 445bf1548d558ac4aa429c0e858e1d9c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!70 &3483351361505118010
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

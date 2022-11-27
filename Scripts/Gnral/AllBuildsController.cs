@@ -1,15 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Zenject;
 
 public class AllBuildsController : BuildsController
 {
     private List<Build> allBuildsList = new List<Build>();
-    private InputHandler inputHandler;
+    [Inject] private InputHandler inputHandler;
 
     private void Start()
     {
-        inputHandler = GetComponentInParent<InputHandler>();
         inputHandler.editorModeButton += () =>
         {   
             if (EditorEnabler.isActive)
@@ -57,10 +57,8 @@ public class AllBuildsController : BuildsController
             {
                 if (b.isActive)
                 {
-                    
                     if (currentTime - b.LastPerformedTime > b.Cooldown)
                     {
-                        Debug.Log("performed " + b.name);
                         b.Perform();
                     }
                 }
