@@ -15,6 +15,7 @@ public class SphereShield : Health
     public void AddEnergy(float energyPerCooldown)
     {
         Heal(energyPerCooldown);
+        Debug.Log("addEnergy");
     }
 
     public override void TakeDamage(float damage)
@@ -26,6 +27,11 @@ public class SphereShield : Health
     private void UpdateShield()
     {
         shieldSprite.color = new Color(shieldSprite.color.r, shieldSprite.color.g, shieldSprite.color.b, HP / MaxHP/2);
+    }
+
+    public void Initialize()
+    {
+         
     }
 
     public override void Heal(float heal)

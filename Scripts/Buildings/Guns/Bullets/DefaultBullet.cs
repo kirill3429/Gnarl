@@ -14,10 +14,9 @@ public class DefaultBullet : AbstractBullet
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (gameObject.activeInHierarchy && collision.gameObject.TryGetComponent<Health>(out Health health))
+        if (gameObject.activeInHierarchy && collision.collider.gameObject.TryGetComponent<Health>(out Health health))
         {
             damageDealerBehaviour.DoDamage(damage, health);
-
             bulletPool.Release(this);
 
             var effect = effectPool.Get();

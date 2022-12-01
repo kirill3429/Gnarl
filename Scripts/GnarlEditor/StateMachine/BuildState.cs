@@ -62,6 +62,7 @@ public class BuildState : EditorState
                         CoinsManager.singleton.TakeCoins(stateMachine.freeBuildCost);
 
                         stateMachine.SetState(stateMachine.defaultState);
+                        stateMachine.freeBuild.GetComponent<Build>().Initialize();
                         stateMachine.freeBuild = null;
                     }
                     

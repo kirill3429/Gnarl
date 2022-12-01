@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rayDistance: 50
-  laserDamage: 1
+  laserDamage: 0.0001
   laserDuration: 1
   effect: {fileID: 173167603692522886}
 --- !u!120 &1584831568728271172
