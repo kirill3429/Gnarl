@@ -6,6 +6,7 @@ public class Laser : MonoBehaviour
     [SerializeField] private float rayDistance;
     [SerializeField] private float laserDamage;
     [SerializeField] private float laserDuration;
+    [SerializeField] private ParticleSystem effect;
 
     private float startTime;
 
@@ -19,21 +20,24 @@ public class Laser : MonoBehaviour
     {
         lineRenderer = GetComponent<LineRenderer>();
         myTransform = transform;
+        gameObject.SetActive(false);
     }
-    private void Awake()
+    private void OnEnable()
     {
         startTime = Time.time;
+        effect.Play();
     }
 
     private void Update()
     {
-        if (Time.time - startTime > laserDuration)
+        if (Time.time - startTime < laserDuration)
         {
             TickRay();
         }
         else
         {
             gameObject.SetActive(false);
+            effect.Stop();
         }
     }
 
@@ -44,7 +48,7 @@ public class Laser : MonoBehaviour
 
         if (hit == false)
         {
-            UpdateBeam(myTransform.up * rayDistance);
+            UpdateBeam(myTransform.up * rayDistance + myTransform.position);
         }
         else
         {
@@ -52,11 +56,17 @@ public class Laser : MonoBehaviour
             if (currentTarget != lastTarget)
             {
                 targetHealth = currentTarget.GetComponent<Health>();
+                if (targetHealth != null)
                 targetHealth.TakeDamage(laserDamage);
             }
             else
             {
-                targetHealth.TakeDamage(laserDamage);
+                if (targetHealth != null)
+                {
+                    targetHealth.TakeDamage(laserDamage);
+                }
+                
+                
             }
             UpdateBeam(hit.point);
         }
