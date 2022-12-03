@@ -20,6 +20,11 @@ public class ForwardGun : Build
         isActive = false;
     }
 
+    public override void Initialize()
+    {
+        bulletsPool.InitializeGun();
+    }
+
     public override void Perform()
     {
         base.Perform();

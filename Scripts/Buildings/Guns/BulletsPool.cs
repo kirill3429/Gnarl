@@ -14,8 +14,6 @@ public class BulletsPool : MonoBehaviour
     private GameObject bulletsContainer;
     private GameObject effectsContainer;
 
-    private bool isInited = false;
-
     public void InitializeGun()
     {
         bulletsContainer = new GameObject(gameObject.name + "BulletsPool");
@@ -65,11 +63,6 @@ public class BulletsPool : MonoBehaviour
 
     public void SpawnBullet()
     {
-        if (!isInited)
-        {
-            InitializeGun();
-            isInited = true;
-        }
         var bullet = bulletPool.Get();
         bullet.transform.position = bulletSocket.position;
         bullet.transform.rotation = bulletSocket.rotation;

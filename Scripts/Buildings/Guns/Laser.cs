@@ -7,6 +7,7 @@ public class Laser : MonoBehaviour
     [SerializeField] private float laserDamage;
     [SerializeField] private float laserDuration;
     [SerializeField] private ParticleSystem effect;
+    [SerializeField] private LayerMask enemyLayer;
 
     private float startTime;
 
@@ -44,7 +45,7 @@ public class Laser : MonoBehaviour
 
     private void TickRay()
     {
-        RaycastHit2D hit = Physics2D.Raycast(myTransform.position, myTransform.up, rayDistance);
+        RaycastHit2D hit = Physics2D.Raycast(myTransform.position, myTransform.up, rayDistance, enemyLayer);
 
         if (hit == false)
         {

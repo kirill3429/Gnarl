@@ -49,6 +49,9 @@ MonoBehaviour:
   laserDamage: 0.0001
   laserDuration: 1
   effect: {fileID: 173167603692522886}
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!120 &1584831568728271172
 LineRenderer:
   m_ObjectHideFlags: 0

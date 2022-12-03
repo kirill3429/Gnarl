@@ -4,6 +4,7 @@ using Zenject;
 public class EditorStateMachine : MonoBehaviour
 {
     [Inject] private InputHandler inputHandler;
+    [Inject] public CoinsManager coinsManager;
     public LayerMask freeSlotsLayerMask;
     public GameObject freeBuild;
     public GameObject freeGnarl;
@@ -11,6 +12,7 @@ public class EditorStateMachine : MonoBehaviour
     public FreeSlotsEnabler slotsEnabler;
     public Slot currentSlot;
     public int freeBuildCost;
+    
 
     public EditorState defaultState;
     public EditorState buildState;

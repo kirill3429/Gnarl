@@ -1,16 +1,12 @@
 using UnityEngine.Pool;
 using UnityEngine;
+using Zenject;
 
 public class CoinsFactory : Build
 {
     [SerializeField] private int coinsPerPeriod = 5;
     [SerializeField] private Color messageColor;
-    private CoinsManager coinsManager;
-
-    private void Start()
-    {
-        coinsManager = FindObjectOfType<CoinsManager>();
-    }
+    [Inject] private CoinsManager coinsManager;
 
     public override void Activate()
     {

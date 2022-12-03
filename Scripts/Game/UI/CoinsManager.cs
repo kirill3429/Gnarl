@@ -3,14 +3,12 @@ using TMPro;
 
 public class CoinsManager : MonoBehaviour
 {
-    public static CoinsManager singleton;
     [SerializeField] private TextMeshProUGUI coinsText;
     private int coins = 100;
     public int Coins { get => coins;}
 
     private void Start()
     {
-        singleton = this;
         UpdateCoinsText();
     }
 

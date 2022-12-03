@@ -16,7 +16,7 @@ public class BuildState : EditorState
     }
     public override void CreateBuild(GameObject buildToSpawn, int cost)
     {
-        if (CoinsManager.singleton.Coins < cost)
+        if (stateMachine.coinsManager.Coins < cost)
             return;
 
         GameObject.Destroy(stateMachine.freeBuild);
@@ -59,7 +59,7 @@ public class BuildState : EditorState
                         stateMachine.slotsEnabler = stateMachine.currentSlot.GnarlHost.GetComponent<FreeSlotsEnabler>();
                         stateMachine.slotsEnabler.AttachToGnarl(stateMachine.currentSlot.Degree);
 
-                        CoinsManager.singleton.TakeCoins(stateMachine.freeBuildCost);
+                        stateMachine.coinsManager.TakeCoins(stateMachine.freeBuildCost);
 
                         stateMachine.SetState(stateMachine.defaultState);
                         stateMachine.freeBuild.GetComponent<Build>().Initialize();

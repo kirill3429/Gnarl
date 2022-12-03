@@ -9,7 +9,7 @@ public class DefaultState : EditorState
     }
     public override void CreateBuild(GameObject buildToSpawn, int cost)
     {
-        if (CoinsManager.singleton.Coins < cost)
+        if (stateMachine.coinsManager.Coins < cost)
             return;
 
         stateMachine.freeBuild = GameObject.Instantiate(buildToSpawn);

@@ -60,7 +60,7 @@ public class GnarlState : EditorState
         stateMachine.slotsEnabler.AttachToGnarl(stateMachine.currentSlot.Degree);
         stateMachine.slotsEnabler.ShowSlots();
 
-        CoinsManager.singleton.TakeCoins(stateMachine.freeBuildCost);
+        stateMachine.coinsManager.TakeCoins(stateMachine.freeBuildCost);
 
         stateMachine.SetState(stateMachine.defaultState);
         stateMachine.freeBuild = null;
