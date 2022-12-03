@@ -10,16 +10,15 @@ public class BulletsPool : MonoBehaviour
     [SerializeField] private Effect effectPrefab;
 
     private ObjectPool<AbstractBullet> bulletPool;
-    private ObjectPool<Effect> effectPool;
     private GameObject bulletsContainer;
-    private GameObject effectsContainer;
+
+    private EffectsPool effectsPool;
 
     public void InitializeGun()
     {
         bulletsContainer = new GameObject(gameObject.name + "BulletsPool");
-        effectsContainer = new GameObject(gameObject.name + "EffectsPool");
         bulletPool = new ObjectPool<AbstractBullet>(OnCreateBullet, OnGetBullet, OnReleaseBullet);
-        effectPool = new ObjectPool<Effect>(OnCreateEffect, OnGetEffect, OnReleaseEffect);
+        effectsPool = new EffectsPool(gameObject.name, effectPrefab);
     }
 
     #region bullet pool
@@ -27,7 +26,7 @@ public class BulletsPool : MonoBehaviour
     private AbstractBullet OnCreateBullet()
     {
         AbstractBullet bullet = Instantiate(bulletPrefab, bulletsContainer.transform, true);
-        bullet.SetPool(bulletPool, effectPool);
+        bullet.SetPool(bulletPool, effectsPool);
         return bullet;
     }
 
@@ -39,25 +38,6 @@ public class BulletsPool : MonoBehaviour
     private void OnReleaseBullet(AbstractBullet bullet)
     {
         bullet.gameObject.SetActive(false);
-    }
-    #endregion
-
-    #region effect pool
-    private Effect OnCreateEffect()
-    {
-        Effect effect = Instantiate(effectPrefab, effectsContainer.transform);
-        effect.SetPool(effectPool);
-        return effect;
-    }
-
-    private void OnGetEffect(Effect effect)
-    {
-        effect.gameObject.SetActive(true);
-    }
-
-    private void OnReleaseEffect(Effect effect)
-    {
-        effect.gameObject.SetActive(false);
     }
     #endregion
 
