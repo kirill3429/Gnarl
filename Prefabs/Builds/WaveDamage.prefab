@@ -317,8 +317,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 618424dacebd4e44a98d44a4c8b56aae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  duration: 3
+  duration: 1
   damage: 10
-  waveSpeed: 8
+  waveSpeed: 20
   waveCreator: {fileID: 442901568920562405}
   effectPrefab: {fileID: 2145019715183970959, guid: 173f503cef4a30b46a573178f13afbf5, type: 3}

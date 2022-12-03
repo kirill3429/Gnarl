@@ -1,12 +1,11 @@
 ﻿using UnityEngine;
-using Zenject;
 
 public class Laser : MonoBehaviour
 {
     [SerializeField] private float rayDistance;
     [SerializeField] private float laserDamage;
     [SerializeField] private float laserDuration;
-    [SerializeField] private ParticleSystem effect;
+    [SerializeField] protected ParticleSystem effect;
     [SerializeField] private LayerMask enemyLayer;
 
     private float startTime;
@@ -29,7 +28,7 @@ public class Laser : MonoBehaviour
         effect.Play();
     }
 
-    private void Update()
+    protected virtual void Update()
     {
         if (Time.time - startTime < laserDuration)
         {
@@ -37,11 +36,15 @@ public class Laser : MonoBehaviour
         }
         else
         {
-            gameObject.SetActive(false);
-            effect.Stop();
+           StopLaser();
         }
     }
 
+    protected void StopLaser()
+    {
+        gameObject.SetActive(false);
+        effect.Stop();
+    }
 
     private void TickRay()
     {
