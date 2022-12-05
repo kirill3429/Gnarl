@@ -3,7 +3,7 @@ using UnityEngine;
 public class LaserAdvanced : Laser
 {
     [SerializeField] private float rotationSpeed;
-    private float current;
+    public float current;
 
     protected override void Update()
     {
@@ -14,7 +14,10 @@ public class LaserAdvanced : Laser
 
         transform.localEulerAngles = new Vector3(0, 0, f - 70);
         effect.transform.localEulerAngles = transform.localEulerAngles;
-        if (Mathf.Abs(transform.localEulerAngles.z) == 70) StopLaser();
+        if (current > 20100)
+        {
+            current = 0;
+        }
         
     }
 }

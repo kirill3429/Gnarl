@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 442901567758516524}
   - component: {fileID: 442901567758516525}
-  m_Layer: 3
+  m_Layer: 11
   m_Name: Circle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: 442901568920562404}
   - component: {fileID: -2170006099311840614}
   - component: {fileID: 26004957727365625}
-  m_Layer: 3
+  m_Layer: 11
   m_Name: WaveDamage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -215,7 +215,7 @@ GameObject:
   - component: {fileID: 8642966376986986460}
   - component: {fileID: 6432999640193427583}
   - component: {fileID: 8412751763589370053}
-  m_Layer: 3
+  m_Layer: 11
   m_Name: Wave
   m_TagString: Untagged
   m_Icon: {fileID: 0}

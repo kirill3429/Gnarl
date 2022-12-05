@@ -45,7 +45,7 @@ public class SphereShield : Health
         
     }
 
-    public override void Die()
+    protected override void Die()
     {
         shieldCollider.enabled = false;
     }

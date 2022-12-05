@@ -1,12 +1,13 @@
-using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
+using UnityEngine.Pool;
 
 public class Health : MonoBehaviour
 {
     [SerializeField] private float healthPoints;
     [SerializeField] private float maxHealthPoints;
 
+    private ObjectPool<Health> enemyPool;
     public float HP { get => healthPoints; }
     public float MaxHP { get => maxHealthPoints; }
 
@@ -31,8 +32,14 @@ public class Health : MonoBehaviour
     }
 
 
-    public virtual void Die()
+    protected virtual void Die()
     {
-        Destroy(gameObject);
+        if (gameObject.activeSelf)
+        enemyPool.Release(this);
+    }
+
+    public void SetPool(ObjectPool<Health> pool)
+    {
+        enemyPool = pool;
     }
 }

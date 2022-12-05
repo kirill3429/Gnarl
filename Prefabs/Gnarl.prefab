@@ -214,7 +214,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   freeSlotPrefab: {fileID: 341737945304975807, guid: 5e0fb9ff5b467e74692e0724311a34f8, type: 3}
-  slots: 5
+  slots: 7
   allSlots: []
 --- !u!114 &8237029570896582933
 MonoBehaviour:

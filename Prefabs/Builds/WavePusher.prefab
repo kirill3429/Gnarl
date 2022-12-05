@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 442901567758516524}
   - component: {fileID: 442901567758516525}
-  m_Layer: 3
+  m_Layer: 10
   m_Name: Circle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: 442901568920562404}
   - component: {fileID: -2170006099311840614}
   - component: {fileID: 6777078447992979672}
-  m_Layer: 3
+  m_Layer: 10
   m_Name: WavePusher
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -215,7 +215,7 @@ GameObject:
   - component: {fileID: 8642966376986986460}
   - component: {fileID: 9020988957102477859}
   - component: {fileID: 6432999640193427583}
-  m_Layer: 3
+  m_Layer: 10
   m_Name: Wave
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -29,4 +29,8 @@ public class PlayerHealth : Health
         healthBar.fillAmount = HP / MaxHP;
         healthText.text = HP.ToString();
     }
+    protected override void Die()
+    {
+        
+    }
 }
