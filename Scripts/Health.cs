@@ -6,8 +6,6 @@ public class Health : MonoBehaviour
 {
     [SerializeField] private float healthPoints;
     [SerializeField] private float maxHealthPoints;
-
-    private ObjectPool<Health> enemyPool;
     public float HP { get => healthPoints; }
     public float MaxHP { get => maxHealthPoints; }
 
@@ -34,12 +32,6 @@ public class Health : MonoBehaviour
 
     protected virtual void Die()
     {
-        if (gameObject.activeSelf)
-        enemyPool.Release(this);
-    }
-
-    public void SetPool(ObjectPool<Health> pool)
-    {
-        enemyPool = pool;
+        Destroy(gameObject);
     }
 }

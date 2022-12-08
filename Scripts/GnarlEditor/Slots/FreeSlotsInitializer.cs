@@ -27,7 +27,7 @@ public class FreeSlotsInitializer : MonoBehaviour
 
         for (int i = 0; i < slots; i++)
         {
-            Vector3 positionToSpawn = CreateSpawnPoint(spawnDegree, spawnDistance);
+            Vector3 positionToSpawn = CreateSpawnPoint(spawnDegree, spawnDistance, transform.eulerAngles.z);
             Slot freeSlot = Instantiate(freeSlotPrefab, positionToSpawn, Quaternion.identity, transform);
             freeSlot.Degree = spawnDegree;
             freeSlot.GnarlHost = transform;
@@ -35,11 +35,11 @@ public class FreeSlotsInitializer : MonoBehaviour
             spawnDegree += slotDegree;
         }
     }
-    private Vector3 CreateSpawnPoint(int degree, int placementDistance)
+    private Vector3 CreateSpawnPoint(int degree, int placementDistance, float degreeOffset)
     {
         Vector2 positionToSpawn = new Vector2();
-        positionToSpawn.x = transform.position.x + placementDistance * Mathf.Cos(degree * Mathf.Deg2Rad);
-        positionToSpawn.y = transform.position.y + placementDistance * Mathf.Sin(degree * Mathf.Deg2Rad);
+        positionToSpawn.x = transform.position.x + placementDistance * Mathf.Cos((degree + degreeOffset) * Mathf.Deg2Rad);
+        positionToSpawn.y = transform.position.y + placementDistance * Mathf.Sin((degree + degreeOffset) * Mathf.Deg2Rad);
         return positionToSpawn;
     }
 }

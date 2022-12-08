@@ -5,8 +5,16 @@ using Zenject;
 public class EnemySpawner : MonoBehaviour
 {
     private EnemyFactory enemyFactory;
-    private float spawnDispersion;
-    private float radius;
+    [SerializeField] private float spawnDispersion;
+    [SerializeField] private float radius;
+    [SerializeField] private float spawnSpeed;
+
+
+    [SerializeField] private int maxEnemies;
+    [SerializeField] private int enemiesPerWave;
+
+    private int currentWave;
+
     [Inject] private Player player;
 
     private void Start()
@@ -19,12 +27,19 @@ public class EnemySpawner : MonoBehaviour
     {
         while (true)
         {
-            if (enemyFactory.CurrentEnemiesCount < 50)
+            if (enemyFactory.CurrentCount < maxEnemies)
             {
-                enemyFactory.GetEnemy();
+                Vector3 spawnPoint = CreateSpawnPoint();
+                enemyFactory.SpawnEnemy(spawnPoint);
             }
 
-            yield return new WaitForSeconds(0.5f);
+            if (enemyFactory.TotalSpawned % enemiesPerWave == 0)
+            {
+                currentWave++;
+                enemyFactory.EnemyIDToSpawn++;
+            }
+
+            yield return new WaitForSeconds(1/spawnSpeed);
         }
 
     }

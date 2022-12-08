@@ -1,47 +1,32 @@
-using UnityEngine.Pool;
 using UnityEngine;
 using Zenject;
 
 public class EnemyFactory : MonoBehaviour
 {
-    private ObjectPool<Health> enemyPool;
-
-    //[SerializeField] private GameObject[] allEnemies;
-    [SerializeField] private GameObject enemy;
+    [SerializeField] private GameObject[] allEnemies;
+    [SerializeField] private Transform enemyContainer;
     [Inject] DiContainer diContainer;
-    private int currentEnemiesCount;
-    private int enemyIDToSpawn;
-
-    public int CurrentEnemiesCount { get => currentEnemiesCount;}
-
-    private void Start()
+    private int totalSpawned = 1;
+    private int enemyIDToSpawn = 0;
+    public int TotalSpawned { get => totalSpawned; }
+    public int EnemyIDToSpawn
     {
-        enemyPool = new ObjectPool<Health>(OnCreateEnemy, OnGetEnemy, OnReleaseEnemy);
+        get => enemyIDToSpawn; 
+        set
+        {
+            if (enemyIDToSpawn < allEnemies.Length) 
+            {
+                enemyIDToSpawn = value;
+            }
+        }
     }
+    public int CurrentCount { get => enemyContainer.childCount; }
 
-    private Health OnCreateEnemy()
+    public GameObject SpawnEnemy(Vector3 spawnPoint)
     {
-        Health enemy = SpawnEnemy(enemyIDToSpawn);
-        enemy.SetPool(enemyPool);
+        totalSpawned++;
+        var enemy = diContainer.InstantiatePrefab(allEnemies[enemyIDToSpawn], enemyContainer);
+        enemy.transform.position = spawnPoint;
         return enemy;
-    }
-     
-    private void OnGetEnemy(Health enemy)
-    {
-        enemy.gameObject.SetActive(true);
-    }
-
-    private void OnReleaseEnemy(Health enemy)
-    {
-        enemy.gameObject.SetActive(false);
-    }
-
-    private Health SpawnEnemy(int enemyId)
-    {
-        return diContainer.InstantiatePrefabForComponent<Health>(enemy);
-    }
-    public GameObject GetEnemy()
-    {
-        return enemyPool.Get().gameObject;
     }
 }
