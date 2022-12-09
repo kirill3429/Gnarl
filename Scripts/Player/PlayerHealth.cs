@@ -4,33 +4,29 @@ using UnityEngine.UI;
 
 public class PlayerHealth : Health
 {
-    [SerializeField] private Image healthBar;
-    [SerializeField] private TextMeshProUGUI healthText;
+    [SerializeField] private GameScreen gameScreen;
+    [SerializeField] private DeathScreen deathScreen;
 
     private void Start()
     {
-        UpdateHealthView();
+        gameScreen.SetHealthView(HP, MaxHP);
     }
 
     public override void TakeDamage(float damage)
     {
         base.TakeDamage(damage);
-        UpdateHealthView();
+        gameScreen.SetHealthView(HP, MaxHP);
     }
 
     public override void Heal(float heal)
     {
         base.Heal(heal);
-        UpdateHealthView();
+        gameScreen.SetHealthView(HP, MaxHP);
     }
 
-    private void UpdateHealthView()
-    {
-        healthBar.fillAmount = HP / MaxHP;
-        healthText.text = HP.ToString();
-    }
     protected override void Die()
     {
-        
+        deathScreen.Show();
+
     }
 }

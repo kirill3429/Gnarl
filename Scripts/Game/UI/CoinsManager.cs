@@ -3,13 +3,14 @@ using TMPro;
 
 public class CoinsManager : MonoBehaviour
 {
-    [SerializeField] private TextMeshProUGUI coinsText;
+    [SerializeField] private GameScreen gameScreen;
     private int coins = 100;
+
     public int Coins { get => coins;}
 
     private void Start()
     {
-        UpdateCoinsText();
+        gameScreen.SetCoinsView(coins);
     }
 
     public void AddCoins(int c)
@@ -17,7 +18,7 @@ public class CoinsManager : MonoBehaviour
         if (c > 0)
         {
             coins += c;
-            UpdateCoinsText();
+            gameScreen.SetCoinsView(coins);
         }
     }
     public void TakeCoins(int c)
@@ -25,11 +26,8 @@ public class CoinsManager : MonoBehaviour
         if (c > 0)
         {
             coins -= c;
-            UpdateCoinsText();
+            gameScreen.SetCoinsView(coins);
         }
     }
-    private void UpdateCoinsText()
-    {
-        coinsText.text = coins.ToString();
-    }
+
 }

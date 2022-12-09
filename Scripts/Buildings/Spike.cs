@@ -5,6 +5,7 @@ using UnityEngine;
 public class Spike : Build
 {
     [SerializeField] private float damage;
+    [SerializeField] private float pushForce;
 
     private Animator animator;
     private DamageDealerBehaviour damageDealerBehaviour;
@@ -28,22 +29,11 @@ public class Spike : Build
         damageCollider.enabled = false;
     }
 
-    private void FixedUpdate()
-    {
-        if (animator.GetCurrentAnimatorStateInfo(0).IsName("Perform"))
-        {
-            damageCollider.enabled = true;
-        }
-        else
-        {
-            damageCollider.enabled = false;
-        }
-    }
+
 
     public override void Perform()
     {
         base.Perform();
-        animator.SetTrigger("Perform");
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -60,6 +50,6 @@ public class Spike : Build
     private void Push(GameObject collisionGameObject)
     {
         Vector2 pushDirection = collisionGameObject.transform.position - transform.position;
-        collisionGameObject.GetComponent<Rigidbody2D>().AddForce(pushDirection.normalized * 100, ForceMode2D.Impulse);
+        collisionGameObject.GetComponent<Rigidbody2D>().AddForce(pushDirection.normalized * pushForce, ForceMode2D.Impulse);
     }
 }

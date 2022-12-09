@@ -32,6 +32,7 @@ public class Health : MonoBehaviour
 
     protected virtual void Die()
     {
+        GetComponent<EnemyReward>().SpawnCoin();
         Destroy(gameObject);
     }
 }
