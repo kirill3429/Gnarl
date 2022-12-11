@@ -6,7 +6,6 @@ public class CoinsPool : MonoBehaviour
 {
     private ObjectPool<Coin> coinsPool;
     [SerializeField] private Coin coinPrefab;
-    [SerializeField] private Transform coinsContainer;
 
     [Inject] DiContainer diContainer;
 
@@ -17,7 +16,7 @@ public class CoinsPool : MonoBehaviour
 
     private Coin OnCreateCoin()
     {
-        Coin coin = diContainer.InstantiatePrefabForComponent<Coin>(coinPrefab, coinsContainer);
+        Coin coin = diContainer.InstantiatePrefabForComponent<Coin>(coinPrefab, transform);
         coin.SetPool(coinsPool);
         return coin;
     }

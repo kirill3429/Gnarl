@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 2401094592738038585}
   - component: {fileID: 2401094592738038533}
   - component: {fileID: 7805255119578569023}
+  - component: {fileID: 7048046098887193106}
   m_Layer: 6
   m_Name: Enemy 3
   m_TagString: Untagged
@@ -152,3 +153,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthPoints: 30
   maxHealthPoints: 30
+--- !u!114 &7048046098887193106
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2401094592738038584}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 679951dd3a1cba843b83559b404457f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

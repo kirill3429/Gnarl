@@ -6,7 +6,7 @@ public class ForwardGun : Build
 
     private void Start()
     {
-        bulletsPool = GetComponent<BulletsPool>();
+        bulletsPool = GetComponentInChildren<BulletsPool>();
     }
 
     public override void Activate()
@@ -27,7 +27,7 @@ public class ForwardGun : Build
     public override void Perform()
     {
         base.Perform();
-        bulletsPool.SpawnBullet();
+        bulletsPool.gameObject.SetActive(true);
     }
 
 }

@@ -9,8 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3483351361505117956}
+  - component: {fileID: 7016763355394811869}
   - component: {fileID: 3483351361505117957}
-  - component: {fileID: 3483351361505117958}
   - component: {fileID: 4698182929676430434}
   - component: {fileID: 6230658740297747826}
   - component: {fileID: 3483351361505118010}
@@ -37,6 +37,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7016763355394811869
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3483351361505117959}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c81fdbca2b3c8b4c8c6123ce73aa086, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 10
+  pushForce: 10
+  lifeTime: 4
 --- !u!212 &3483351361505117957
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -89,23 +104,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &3483351361505117958
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3483351361505117959}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8ba7afbb1f456be4fa6dd1cc959f0e07, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 10
-  lifeTime: 5
-  moveBehaviour: {fileID: 0}
-  damageDealerBehaviour: {fileID: 6230658740297747826}
-  pushForce: 10
 --- !u!114 &4698182929676430434
 MonoBehaviour:
   m_ObjectHideFlags: 0
