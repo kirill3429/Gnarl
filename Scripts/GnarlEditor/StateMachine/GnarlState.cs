@@ -1,8 +1,9 @@
 ﻿using UnityEngine;
+using Zenject;
 
 public class GnarlState : EditorState
 {
-    public GnarlState(EditorStateMachine stateMachine) : base(stateMachine) { }
+    public GnarlState(EditorStateMachine stateMachine, DiContainer diContainer) : base(stateMachine, diContainer) { }
     public override void Tick(Ray ray)
     {
         FollowMouse(ray);
@@ -15,7 +16,7 @@ public class GnarlState : EditorState
     public override void CreateBuild(GameObject buildToSpawn, int cost)
     {
         Cancel();
-        stateMachine.freeBuild = GameObject.Instantiate(buildToSpawn);
+        stateMachine.freeBuild = diContainer.InstantiatePrefab(buildToSpawn);
         stateMachine.SetState(stateMachine.buildState);
     }
 

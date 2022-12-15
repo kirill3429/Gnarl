@@ -7,11 +7,6 @@ public class HealthFactory : Build
     [SerializeField] private Color messageColor;
     private PlayerHealth health;
 
-    private void Start()
-    {
-        health = GetComponentInParent<PlayerHealth>();
-    }
-
     public override void Activate()
     {
         isActive = true;
@@ -20,6 +15,11 @@ public class HealthFactory : Build
     public override void Deactivate()
     {
         isActive = false;
+    }
+
+    public override void Initialize()
+    {
+        health = GetComponentInParent<PlayerHealth>();
     }
 
     public override void Perform()

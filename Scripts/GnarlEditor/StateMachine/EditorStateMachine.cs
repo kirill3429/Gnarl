@@ -3,6 +3,7 @@ using Zenject;
 
 public class EditorStateMachine : MonoBehaviour
 {
+    [Inject] private DiContainer diContainer;
     [Inject] private InputHandler inputHandler;
     [Inject] public CoinsManager coinsManager;
     public LayerMask freeSlotsLayerMask;
@@ -29,9 +30,9 @@ public class EditorStateMachine : MonoBehaviour
     private void Start()
     {
         mainCamera = Camera.main;
-        defaultState = new DefaultState(this);
-        buildState = new BuildState(this);
-        gnarlState = new GnarlState(this);
+        defaultState = new DefaultState(this, diContainer);
+        buildState = new BuildState(this, diContainer);
+        gnarlState = new GnarlState(this, diContainer);
         state = defaultState;
 
     }

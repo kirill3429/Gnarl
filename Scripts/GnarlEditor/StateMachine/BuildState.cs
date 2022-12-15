@@ -1,7 +1,9 @@
 ﻿using UnityEngine;
+using Zenject;
+
 public class BuildState : EditorState
 {
-    public BuildState(EditorStateMachine stateMachine) : base(stateMachine) { }
+    public BuildState(EditorStateMachine stateMachine, DiContainer diContainer) : base(stateMachine, diContainer) { }
     public override void Tick(Ray ray)
     {
         if (stateMachine.InputHandler.mouseRightClick) 
@@ -20,7 +22,7 @@ public class BuildState : EditorState
             return;
 
         GameObject.Destroy(stateMachine.freeBuild);
-        stateMachine.freeBuild = GameObject.Instantiate(buildToSpawn);
+        stateMachine.freeBuild = diContainer.InstantiatePrefab(buildToSpawn);
         stateMachine.freeBuildCost = cost;
     }
 
@@ -33,6 +35,7 @@ public class BuildState : EditorState
             Vector2 worldPosition = ray.GetPoint(position);
             freeBuild.transform.position = worldPosition;
         }
+        
     }
     private void TryAttachToFreeSlot(Ray ray)
     {

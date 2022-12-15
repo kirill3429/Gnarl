@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: -1532057087852464146}
   - component: {fileID: 8228451204649027068}
   - component: {fileID: 5784967439928482251}
+  - component: {fileID: -8954233227717201573}
   m_Layer: 7
   m_Name: ForwardGun
   m_TagString: Untagged
@@ -134,6 +135,18 @@ MonoBehaviour:
   Description: 1
   AdvancedDescription: 1
   Cost: 1
+--- !u!114 &-8954233227717201573
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3299473903590340846}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be0d97bd77706054d93ce11f347527ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6719134341663469683
 GameObject:
   m_ObjectHideFlags: 0

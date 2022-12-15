@@ -5,10 +5,17 @@ public class GnarlEditorInstaller : MonoInstaller
 {
     [SerializeField] private EditorStateMachine stateMachine;
     [SerializeField] private CoinsManager coinsManager;
+    [SerializeField] private EditorSideBlock editorSideBlock;
     public override void InstallBindings()
     {
         BindStateMachine();
         BindCoinsManager();
+        BindSideBlock();
+    }
+
+    private void BindSideBlock()
+    {
+        Container.Bind<EditorSideBlock>().FromInstance(editorSideBlock).AsSingle().NonLazy();
     }
 
     private void BindStateMachine()
