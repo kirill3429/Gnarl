@@ -42,13 +42,17 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (gameObject.activeInHierarchy && collision.gameObject.TryGetComponent<Health>(out Health health))
+        if (collision != null)
         {
-            damageDealerBehaviour.DoDamage(damage, health, collision.attachedRigidbody, pushForce);
+            if (gameObject.activeInHierarchy && collision.gameObject.TryGetComponent<Health>(out Health health))
+            {
+                damageDealerBehaviour.DoDamage(damage, health, collision.attachedRigidbody, pushForce);
 
-            bulletPool.Release(this);
-            var effect = effectPool.Get();
-            effect.transform.position = transform.position;
+                bulletPool.Release(this);
+                var effect = effectPool.Get();
+                effect.transform.position = transform.position;
+            }
         }
+        
     }
 }

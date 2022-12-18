@@ -6,6 +6,7 @@ using Zenject;
 public class AllBuildsController : BuildsController
 {
     private List<Build> allBuildsList = new List<Build>();
+    [SerializeField] CameraTarget cameraTarget;
     [Inject] private InputHandler inputHandler;
 
     private void Start()
@@ -21,7 +22,9 @@ public class AllBuildsController : BuildsController
             {
                 AssignBuilds();
                 ActivateAllBuilds();
+                cameraTarget.DefineTargetPosition();
             }
+            
         };
         StartCoroutine(PerformAllBuilds());
     }

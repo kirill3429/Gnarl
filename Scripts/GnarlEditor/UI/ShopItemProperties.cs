@@ -13,17 +13,12 @@ public class ShopItemProperties : MonoBehaviour
     public int CostInt;
     public Image IconImage;
     public GameObject ItemPrefab;
-    public BuildProperties buildProperties;
     [Inject] private EditorStateMachine gnarlEditorBuildCreator;
-    [Inject] private EditorSideBlock editorSideBlock;
 
     private void Start()
     {
         var button = GetComponent<Button>();
         button.onClick.AddListener(CreateObject);
-        buildProperties = ItemPrefab.GetComponent<BuildProperties>();
-        
-
     }
 
     public void CreateObject()
@@ -31,8 +26,5 @@ public class ShopItemProperties : MonoBehaviour
         gnarlEditorBuildCreator.CreateBuild(ItemPrefab, CostInt);
     }
 
-    public void ShowProperties()
-    {
-        editorSideBlock.ShowProperties(buildProperties);
-    }
+
 }
